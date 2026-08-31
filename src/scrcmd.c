@@ -2686,22 +2686,29 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
                 DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Flag Values Before: %d, %d ********", FlagGet(flagPreviewChecked), FlagGet(flagShinyPreview));
             #endif
 
-            u32 value = READ_OTID_FROM_SAVE;
-            u32 shinyPersonality = Random32();
-
-            // this is technically unnecessary right now, but will replace GetShinyOdds in terms of implementing user-defined shiny odds
-            u32 totalRerolls = 0;
-            if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-                totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
-            
-            while (GET_SHINY_VALUE(value, shinyPersonality) >= GetShinyOdds() && totalRerolls > 0)
+            if (gSaveBlock3Ptr->challengeSettings.tx_Features_ForceShinyStarter)
             {
-                shinyPersonality = Random32();
-                totalRerolls--;
-            }
-
-            if (GET_SHINY_VALUE(value, shinyPersonality) < GetShinyOdds())
                 FlagSet(flagShinyPreview);
+            }
+            else
+            {
+                u32 value = READ_OTID_FROM_SAVE;
+                u32 shinyPersonality = Random32();
+
+                // this is technically unnecessary right now, but will replace GetShinyOdds in terms of implementing user-defined shiny odds
+                u32 totalRerolls = 0;
+                if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+                    totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+
+                while (GET_SHINY_VALUE(value, shinyPersonality) >= GetShinyOdds() && totalRerolls > 0)
+                {
+                    shinyPersonality = Random32();
+                    totalRerolls--;
+                }
+
+                if (GET_SHINY_VALUE(value, shinyPersonality) < GetShinyOdds())
+                    FlagSet(flagShinyPreview);
+            }
 
             FlagSet(flagPreviewChecked);
         }

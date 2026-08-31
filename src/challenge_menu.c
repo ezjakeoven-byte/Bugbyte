@@ -67,6 +67,7 @@ enum {
     ITEM_FEATURES_RTC_TYPE,
     ITEM_FEATURES_SHINY_CHANCE,
     ITEM_FEATURES_SHINY_COLOR,
+    ITEM_FEATURES_FORCE_SHINY_STARTER,
     ITEM_FEATURES_ITEM_DROP,
     ITEM_FEATURES_FRONTIER_BANS,
     ITEM_FEATURES_BUGBYTE,
@@ -658,6 +659,10 @@ static const u8 *const sDesc_ShinyColor[] = {
     COMPOUND_STRING("Original shiny color palette for\nall {PKMN}. Default."),
     COMPOUND_STRING("Some shiny {PKMN} have brand new\ncolor palettes."),
 };
+static const u8 *const sDesc_ForceShinyStarter[] = {
+    COMPOUND_STRING("Starter {PKMN} shininess follows\nnormal SHINY CHANCE odds."),
+    COMPOUND_STRING("Your starter {PKMN} is guaranteed\nto be SHINY."),
+};
 static const u8 *const sDesc_FeaturesNext[] = {
     COMPOUND_STRING("Continue to Randomizer options."),
 };
@@ -678,6 +683,12 @@ static const struct ChallengeMenuItem sTabItems_Features[] = {
     [ITEM_FEATURES_SHINY_COLOR] = {
         .name         = COMPOUND_STRING("ALT SHINY"),
         .descriptions = sDesc_ShinyColor,
+        .numChoices   = 2,
+        .choiceNames  = sChoices_OffOn,
+    },
+    [ITEM_FEATURES_FORCE_SHINY_STARTER] = {
+        .name         = COMPOUND_STRING("SHINY STARTER"),
+        .descriptions = sDesc_ForceShinyStarter,
         .numChoices   = 2,
         .choiceNames  = sChoices_OffOn,
     },
@@ -1990,6 +2001,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
     cs->tx_Features_WildMonDropItems = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP);
     cs->tx_Features_FrontierBans   = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FRONTIER_BANS);
     cs->tx_Features_ShinyColors    = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_COLOR);
+    cs->tx_Features_ForceShinyStarter = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FORCE_SHINY_STARTER);
     cs->tx_Features_Bugbyte          = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_BUGBYTE);
     
     // Randomizer tab — if master toggle is OFF, clear all sub-fields
@@ -2230,6 +2242,7 @@ void CB2_InitChallengeMenu(void)
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP)    = cs->tx_Features_WildMonDropItems;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FRONTIER_BANS)= cs->tx_Features_FrontierBans;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_COLOR)  = cs->tx_Features_ShinyColors;
+            *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FORCE_SHINY_STARTER) = cs->tx_Features_ForceShinyStarter;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_BUGBYTE)       = cs->tx_Features_Bugbyte;
 
             // Randomizer tab — derive master toggle from whether any sub-field is active

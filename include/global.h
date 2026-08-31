@@ -339,6 +339,7 @@ struct ChallengeSettings
     u8 tx_Difficulty_EscapeRopeDig:1;
     u8 tx_Features_ShinyChance:4;
     u8 tx_Features_Bugbyte:1;
+    u8 tx_Features_ForceShinyStarter:1;
 };
 
 struct SaveBlock3
