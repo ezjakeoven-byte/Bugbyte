@@ -61,8 +61,7 @@ MrPokemonHouse_EventScript_GiveEgg::
 	setflag FLAG_HIDE_SILVER_NEWBARKTOWN
 	setflag FLAG_SYS_POKEDEX_GET
 	setflag FLAG_UNUSED_37
-	checkrandomizer
-	call_if_eq VAR_RESULT, TRUE, MrPokemonHouse_EventScript_GiveNatDexRandomizer
+	call MrPokemonHouse_EventScript_GiveNatDexRandomizer
 	clearflag FLAG_HIDE_LAB_POLICEMAN
 	setvar VAR_CHERRYGROVE_CITY_STATE, 2
 	setrespawn HEAL_LOCATION_CHERRYGROVE_CITY_HNS
@@ -212,7 +211,7 @@ MrPokemonHouse_Text_OakIntro:
 	.string "You seem to be dependable. How\n"
 	.string "would you like to help me out?\p"
 	.string "See? This is the latest version of\n"
-	.string "the POKéDEX and DexNav.\p"
+	.string "the NATIONAL POKéDEX and DexNav.\p"
 	.string "It automatically records data on\n"
 	.string "POKéMON you've seen or caught.\p"
 	.string "It's a hi-tech encyclopedia!\p"
@@ -220,11 +219,11 @@ MrPokemonHouse_Text_OakIntro:
 	.string "they evolve, and their moves.$"
 
 MrPokemonHouse_Text_GetDex:
-	.string "{PLAYER} received POKéDEX!$"
+	.string "{PLAYER} received NATIONAL POKéDEX!$"
 
 MrPokemonHouse_Text_OakParting:
 	.string "Go meet many kinds of POKéMON and\n"
-	.string "complete that POKéDEX!\p"
+	.string "complete that NATIONAL POKéDEX!\p"
 	.string "But I've stayed too long.\p"
 	.string "I have to get to GOLDENROD\n"
 	.string "for my usual radio show.\p"

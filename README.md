@@ -6,7 +6,7 @@ The goal is to expand the game with additional Pokémon, encounters, quality-of-
 
 ## Current Version
 
-**Bugbyte Edition v0.2.0**
+**Bugbyte Edition v0.2.1**
 
 ### Highlights
 
@@ -16,6 +16,7 @@ The goal is to expand the game with additional Pokémon, encounters, quality-of-
 - Guaranteed shiny starters
 - Expanded debugging and wild encounter tools
 - Custom Gen 1–9 encounter tables
+- National Pokédex now granted alongside the regular Pokédex from Oak
 - Additional quality-of-life changes
 
 ## Credits
