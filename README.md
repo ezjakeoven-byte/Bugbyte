@@ -6,7 +6,7 @@ The goal is to expand the game with additional Pokémon, encounters, quality-of-
 
 ## Current Version
 
-**Bugbyte Edition v0.2.1**
+**Bugbyte Edition v0.2.2**
 
 ### Highlights
 
